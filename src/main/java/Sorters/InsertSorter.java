@@ -3,8 +3,10 @@ package Sorters;
 import Comparators.PersonComparator;
 import Main.Person;
 import Main.PersonRepository;
+import org.apache.log4j.Logger;
 
 public class InsertSorter implements PersonSorter{
+    private static final Logger log = Logger.getLogger(InsertSorter.class);
     /**
      * Сортировка вставками
      * @param persons
@@ -12,6 +14,7 @@ public class InsertSorter implements PersonSorter{
      */
     public void sort(Person[] persons, PersonComparator comparator)
     {
+        log.info("Сортировка вставками");
         int sortedRangeEndIndex = 1;
 
         while (sortedRangeEndIndex < persons.length)

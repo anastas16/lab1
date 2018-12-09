@@ -1,11 +1,13 @@
 package Comparators;
 
 import Main.Person;
+import org.apache.log4j.Logger;
 
 import java.time.Period;
 import java.util.Comparator;
 
 public class PersonByBirthDateComparator implements PersonComparator {
+    private static final Logger log = Logger.getLogger(PersonByBirthDateComparator.class);
     /**
      * Comparator, оперделяющий, кто родился раньше
      * Если года рожденяи одинаковы, проверяются месяцы,
@@ -20,6 +22,7 @@ public class PersonByBirthDateComparator implements PersonComparator {
      */
     @Override
     public int compare(Person p1, Person p2) {
+        log.info("Сравнение даты рождения человека id = " + p1.getId() + " и человека id = " + p2.getId());
         int compare = Period.between(p2.getBirthDate(), p1.getBirthDate()).getYears();
         if (compare == 0) {
             compare = Period.between(p2.getBirthDate(), p1.getBirthDate()).getMonths();

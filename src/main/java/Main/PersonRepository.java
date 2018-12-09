@@ -3,10 +3,14 @@ package Main;
 import Checkers.*;
 import Comparators.PersonComparator;
 import Sorters.PersonSorter;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 
+
 public class PersonRepository {
+    private static final Logger log = Logger.getLogger(PersonRepository.class);
+
     /**
      * массив значений типа Person
      */
@@ -24,6 +28,7 @@ public class PersonRepository {
     public PersonRepository(PersonSorter sorter) {
         this.elements = new Person[0];
         this.sorter = sorter;
+        log.info("Создание экземпляра класса PersonRepository с заданным sorter");
     }
 
     /**
@@ -31,6 +36,7 @@ public class PersonRepository {
      */
     public PersonRepository() {
         this.elements = new Person[0];
+        log.info("Создание экземпляра класса PersonRepository без параметров");
     }
     /**
      * Создание экземпляра класса PersonRepository указанного размера
@@ -38,6 +44,7 @@ public class PersonRepository {
      */
     public PersonRepository(int size) {
         this.elements = new Person[size];
+        log.info("Создание экземпляра класса PersonRepository указанной длины");
     }
 
     /**
@@ -45,6 +52,7 @@ public class PersonRepository {
      * @return вид сортировки
      */
     public PersonSorter getSorter() {
+        log.info("Получение человека sorter хранилища");
         return this.sorter;
     }
 
@@ -54,6 +62,7 @@ public class PersonRepository {
      */
     public void setSorter(PersonSorter sorter) {
         this.sorter = sorter;
+        log.info("Задание sorter для хранилища");
     }
 
     /**
@@ -62,7 +71,9 @@ public class PersonRepository {
      * @return элемент указанного индека
      */
     public Person get(int index) {
+        log.info("Получение человека " + index + " из хранилища");
         return this.elements[index];
+
     }
 
     /**
@@ -72,6 +83,7 @@ public class PersonRepository {
      */
     public void set(int index, Person element) {
         this.elements[index] = element;
+        log.info("Обновление " + index + " элемента массива");
     }
 
     /**
@@ -79,6 +91,7 @@ public class PersonRepository {
      * @return размер хранилища
      */
     public int size() {
+        log.info("Определение размера хранилища");
         return this.elements.length;
     }
     /**
@@ -92,9 +105,11 @@ public class PersonRepository {
             this.elements = new Person[temp.length + 1];
             System.arraycopy(temp, 0, this.elements, 0, temp.length);
             this.elements[elements.length - 1] = element;
+            log.info("Добавление человека на " + (elements.length - 1) + " позицию хранилища");
             return true;
         } catch(Exception e) {
             e.printStackTrace();
+            log.error("Человек не добавлен", e);
         }
         return false;
     }
@@ -109,9 +124,11 @@ public class PersonRepository {
             elements = new Person[temp.length - 1];
             System.arraycopy(temp, 0, elements, 0, index);
             System.arraycopy(temp, index + 1, elements, index, elements.length - index);
+            log.info("Удаление" + index + " человека из хранилища");
             return true;
         } catch(Exception e) {
             e.printStackTrace();
+            log.error("Человек не удален", e);
         }
         return false;
     }
@@ -138,6 +155,7 @@ public class PersonRepository {
      * @return хранилище людей, удовлетворяющих заданному возрасту
      */
     public PersonRepository searchByAge(int age) {
+        log.info("Поиск человека с возрастом - " + age);
         return search(new PersonByAgeChecker(), age);
     }
 
@@ -147,6 +165,7 @@ public class PersonRepository {
      * @return хранилище людей, удовлетворяющих заданному полному имени
      */
     public PersonRepository searchByFIO(String fio) {
+        log.info("Поиск человека с частью полного имени - " + fio);
         return search(new PersonByFIOChecker(), fio);
     }
 
@@ -156,6 +175,7 @@ public class PersonRepository {
      * @return хранилище людей, удовлетворяющих заданной дате рождения
      */
     public PersonRepository searchByBirthDate(LocalDate birthDate) {
+        log.info("Поиск человека с датой рождения - " + birthDate);
         return search(new PersonByBirthDateChecker(), birthDate);
     }
 
@@ -165,6 +185,7 @@ public class PersonRepository {
      * @return хранилище людей, удовлетворяющих заданнщму идентификатору
      */
     public PersonRepository searchById(int id) {
+        log.info("Поиск человека с id - " + id);
         return search(new PersonByIdChecker(), id);
     }
 
@@ -173,6 +194,7 @@ public class PersonRepository {
      * @param comparator перменная типа Comparator - свойсво Person, по которому нужно отсортировать хранилище
      */
     public void sort(PersonComparator comparator) {
+        log.info("Сортировка по - " + comparator.getClass().getName());
         this.sorter.sort(elements, comparator);
     }
 

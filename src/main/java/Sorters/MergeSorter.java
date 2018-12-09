@@ -3,8 +3,10 @@ package Sorters;
 import Comparators.PersonComparator;
 import Main.Person;
 import Main.PersonRepository;
+import org.apache.log4j.Logger;
 
 public class MergeSorter implements PersonSorter {
+    private static final Logger log = Logger.getLogger(MergeSorter.class);
     /**
      * Сортировка слиянием
      * Рекурсивного разделение массива на группы
@@ -13,6 +15,7 @@ public class MergeSorter implements PersonSorter {
      */
     @Override
     public void sort(Person[] persons, PersonComparator comparator) {
+        log.info("Сортировка слиянием");
         if (persons.length <= 1)
         {
             return;

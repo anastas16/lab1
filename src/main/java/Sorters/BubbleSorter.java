@@ -2,9 +2,10 @@ package Sorters;
 
 import Comparators.PersonComparator;
 import Main.Person;
-import Main.PersonRepository;
+import org.apache.log4j.Logger;
 
 public class BubbleSorter implements PersonSorter{
+    private static final Logger log = Logger.getLogger(BubbleSorter.class);
     /**
      * Сортировка пузырьком
      * @param persons
@@ -12,6 +13,7 @@ public class BubbleSorter implements PersonSorter{
      */
     @Override
     public void sort(Person[] persons, PersonComparator comparator) {
+        log.info("Сортировка пузырьком");
         boolean swapped;
         do
         {

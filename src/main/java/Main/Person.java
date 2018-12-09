@@ -1,10 +1,13 @@
 package Main;
 
+import org.apache.log4j.Logger;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 
 public class Person {
+    private static final Logger log = Logger.getLogger(Person.class);
     /**
      * целочисленное значение - идентификатор человека
      */
@@ -33,12 +36,14 @@ public class Person {
         this.id = id;
         this.FIO = FIO;
         this.birthDate = birthDate;
+        log.info("Создание экземпляра класса Person");
     }
 
     /**
      * Создание экземпляра класса Person без параметров
      */
     public Person() {
+        log.info("Создание экземпляра класса Person без параметров");
     }
 
     /**
@@ -103,6 +108,7 @@ public class Person {
      * @return возраст человека
      */
     public Integer getAge() {
+        log.info("Определение возраста человека");
         return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
@@ -113,6 +119,7 @@ public class Person {
      */
     @Override
     public String toString() {
+        log.info("Получение строкового представления экземпляра класса");
         return "Person{" +
                 "id=" + id +
                 ", FIO='" + FIO + '\'' +
