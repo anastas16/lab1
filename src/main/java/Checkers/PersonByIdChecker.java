@@ -4,10 +4,10 @@ import Main.Person;
 
 public class PersonByIdChecker implements PersonChecker {
     /**
-     *
-     * @param p
-     * @param value
-     * @return
+     * Cheker, сравнивающий заданный идентификатор с идентификаторм указанного человека
+     * @param p Person
+     * @param value  значение искомого идентфиикатора
+     * @return true, если значения входных параметров равны, false - в противном случае
      */
     @Override
     public boolean check(Person p, Object value) {

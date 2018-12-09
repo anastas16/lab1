@@ -4,10 +4,11 @@ import Main.Person;
 
 public class PersonByFIOChecker implements PersonChecker {
     /**
-     *
-     * @param p
-     * @param value
-     * @return
+     * Cheker, определяющий, есть ли заданное часть полного имени (фамилия, имя, отчество в любом регистре)
+     * в полном имени указанного человека
+     * @param p Person
+     * @param value строка имени
+     * @return true, если значения входных параметров равны, false - в противном случае
      */
     @Override
     public boolean check(Person p, Object value) {

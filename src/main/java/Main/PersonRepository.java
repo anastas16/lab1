@@ -7,36 +7,55 @@ import Sorters.PersonSorter;
 import java.time.LocalDate;
 
 public class PersonRepository {
+    /**
+     * массив значений типа Person
+     */
     private Person[] elements;
+    /**
+     * Свойство типа PersonSorter, определяющее вид применяемой сортировки для хранилища
+     */
     private PersonSorter sorter;
 
     /**
-     * Создание экземпляра класса PersonRepository
+     * Создание экземпляра класса PersonRepository с входным параметром сортировки
+     *
+     * @param sorter переменная типа PersonSorter - вид сортировки
      */
     public PersonRepository(PersonSorter sorter) {
         this.elements = new Person[0];
         this.sorter = sorter;
     }
 
+    /**
+     * Создание экземпляра класса PersonRepository без параметров
+     */
     public PersonRepository() {
         this.elements = new Person[0];
     }
-
-    public PersonSorter getSorter() {
-        return this.sorter;
-    }
-
-    public void setSorter(PersonSorter sorter) {
-        this.sorter = sorter;
-    }
-
     /**
      * Создание экземпляра класса PersonRepository указанного размера
-     * @param size
+     * @param size целочисленное значение - размер массива
      */
     public PersonRepository(int size) {
         this.elements = new Person[size];
     }
+
+    /**
+     * Получение вида сортировки, применяемого для этого хранилища
+     * @return вид сортировки
+     */
+    public PersonSorter getSorter() {
+        return this.sorter;
+    }
+
+    /**
+     * Определение вида сортировки для данного хранилища
+     * @param sorter пременная типа PersonSorter - вид сортировки
+     */
+    public void setSorter(PersonSorter sorter) {
+        this.sorter = sorter;
+    }
+
     /**
      * Получение элемета хранилища по индексу
      * @param index номер элемента в хранилище
@@ -98,10 +117,10 @@ public class PersonRepository {
     }
 
     /**
-     *
-     * @param personChecker
-     * @param value
-     * @return
+     * Сортировка по указанному свойству и значению
+     * @param personChecker переменная, определяющая свойства Person
+     * @param value переменная типа Object - искомое значение
+     * @return хранилище людей, удовлетворяющих заданному поиску
      */
     private PersonRepository search(PersonChecker personChecker, Object value) {
         PersonRepository searchRepository = new PersonRepository(sorter);
@@ -114,52 +133,44 @@ public class PersonRepository {
     }
 
     /**
-     *
-     * @param age
-     * @return
+     * Поиск по возрасту
+     * @param age перменнная типа int - искомый возраст
+     * @return хранилище людей, удовлетворяющих заданному возрасту
      */
     public PersonRepository searchByAge(int age) {
         return search(new PersonByAgeChecker(), age);
     }
 
     /**
-     *
-     * @param fio
-     * @return
+     *Поиск человека по полному имени
+     * @param fio переменная типа String - искомое полное имя
+     * @return хранилище людей, удовлетворяющих заданному полному имени
      */
     public PersonRepository searchByFIO(String fio) {
         return search(new PersonByFIOChecker(), fio);
     }
 
     /**
-     *
-     * @param birthDate
-     * @return
+     *Поиск по заданной дате
+     * @param birthDate переменная типа LocalDate - искомая дата рождения
+     * @return хранилище людей, удовлетворяющих заданной дате рождения
      */
     public PersonRepository searchByBirthDate(LocalDate birthDate) {
         return search(new PersonByBirthDateChecker(), birthDate);
     }
 
     /**
-     *
-     * @return
-     */
-    public PersonRepository searchById() {
-        return searchById();
-    }
-
-    /**
-     *
-     * @param id
-     * @return
+     * Поиск человека по ео идентфиикатору
+     * @param id переменная типа int - искомое значение идентфиикатора человека
+     * @return хранилище людей, удовлетворяющих заданнщму идентификатору
      */
     public PersonRepository searchById(int id) {
         return search(new PersonByIdChecker(), id);
     }
 
     /**
-     *
-     * @param comparator
+     *Сортировка хралища по указанному компаратору
+     * @param comparator перменная типа Comparator - свойсво Person, по которому нужно отсортировать хранилище
      */
     public void sort(PersonComparator comparator) {
         this.sorter.sort(elements, comparator);
