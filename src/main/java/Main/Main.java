@@ -17,6 +17,6 @@ public class Main {
         persons.add(new Person(3, "Аксенов Юрий Виктор", LocalDate.of(1992, 5, 1)));
         persons.add(new Person(4, "Сергеев Смен Андреевич", LocalDate.of(2000, 1, 22)));
         persons.sort(new PersonByFIOComparator());
-        System.out.println(persons.get(0));
+        System.out.println(persons.get(0).getId());
     }
 }

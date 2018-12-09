@@ -18,6 +18,18 @@ public class PersonRepository {
         this.sorter = sorter;
     }
 
+    public PersonRepository() {
+        this.elements = new Person[0];
+    }
+
+    public PersonSorter getSorter() {
+        return this.sorter;
+    }
+
+    public void setSorter(PersonSorter sorter) {
+        this.sorter = sorter;
+    }
+
     /**
      * Создание экземпляра класса PersonRepository указанного размера
      * @param size

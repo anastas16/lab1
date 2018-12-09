@@ -22,6 +22,8 @@ public class Person {
         this.FIO = FIO;
         this.birthDate = birthDate;
     }
+    public Person() {
+    }
 
 
     /**
